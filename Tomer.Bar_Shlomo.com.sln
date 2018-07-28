@@ -4,11 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomer.Bar-Shlomo.com.Loggin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tomer.Bar_Shlomo.com.Logging.Tests", "Tomer.Bar_Shlomo.com.Logging.Tests\Tomer.Bar_Shlomo.com.Logging.Tests.csproj", "{2A96765E-E551-4498-8BAC-2FE8FF6BFF96}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OutPut", "OutPut", "{44454713-2DD0-411D-8B43-4F00B37E5802}"
-ProjectSection(SolutionItems) = preProject
-	Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log = Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log
-EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
