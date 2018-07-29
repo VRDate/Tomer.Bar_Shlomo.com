@@ -4,7 +4,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using NUnit.Framework;
 using Tomer.Bar_Shlomo.com.Logging.Model;
-//Logging to C:\Users\[UserName]\AppData\Local\Temp\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log
+/*Logging to 
+ Windows
+ C:\Users\[UserName]\AppData\Local\Temp\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log
+ Linux
+ /tmp/Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log
+ */ 
 // ReSharper disable HeapView.BoxingAllocation
 namespace Tomer.Bar_Shlomo.com.Logging.Tests
 {
