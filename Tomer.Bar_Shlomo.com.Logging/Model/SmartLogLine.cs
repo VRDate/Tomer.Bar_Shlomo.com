@@ -10,7 +10,8 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
     {
         private const int HashKey = 951753;
 
-        private const string VlaueSeperator = "\t";
+        private const string ValueSeperator = "\t";
+        private const string DateTimeFormat = "O";
 
         // ReSharper disable once MemberCanBePrivate.Global
         public SmartLogLine(Type type,
@@ -18,6 +19,7 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
             string line)
         {
             At = DateTime.UtcNow;
+            MachineName = Environment.MachineName;
             ThreadName = Thread.CurrentThread.Name;
             Type = type;
             Level = smartLogLevel;
@@ -27,6 +29,8 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         public DateTime At { get; }
 
         public string ThreadName { get; }
+
+        public string MachineName { get; }
 
         public Type Type { get; }
 
@@ -71,6 +75,7 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         {
             int hashCode = HashKey +
                            At.GetHashCode() +
+                           MachineName.GetHashCode() +
                            ThreadName.GetHashCode() +
                            Type.GetHashCode() +
                            Level.Priority() +
@@ -86,10 +91,10 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
 
         public override string ToString()
         {
-            string line = string.Format("{1:O}{0}{2}{0}{3}{0}{4}{0}{5}",
-                VlaueSeperator,
-                // ReSharper disable once HeapView.BoxingAllocation
-                At,
+            string line = string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}",
+                ValueSeperator,
+                At.ToString(DateTimeFormat),
+                MachineName,
                 ThreadName,
                 Type,
                 Level.ToLine(),
@@ -101,7 +106,6 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
             object obj,
             object message)
         {
-            // ReSharper disable once HeapView.BoxingAllocation
             return $"{action} {obj} \"{message}\"";
         }
     }

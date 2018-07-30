@@ -8,6 +8,16 @@ namespace Tomer.Bar_Shlomo.com.Logging
     [SuppressMessage("ReSharper", "SuggestVarOrType_SimpleTypes")]
     public static class SmartLoggerFactory
     {
+        public static readonly SmartLogLevel[] SmartLogLevelsWriteOrder =
+        {
+            SmartLogLevel.Critical,
+            SmartLogLevel.Error,
+            SmartLogLevel.Warn,
+            SmartLogLevel.Info,
+            SmartLogLevel.Debug,
+            SmartLogLevel.Trace
+        };
+
         private static readonly Array SmartLogLevelValues = Enum.GetValues(typeof(SmartLogLevel));
 
         public static SmartLogPerTypeByLevel<T> Log<T>(this SmartLoggerPerType<T> smartLoggerPerType,

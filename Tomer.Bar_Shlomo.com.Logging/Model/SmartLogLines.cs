@@ -14,7 +14,10 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
 
         public void Write(TextWriter textWriter)
         {
-            while (TryDequeue(out SmartLogLine smartLogLine)) smartLogLine?.Write(textWriter);
+            while (TryDequeue(out SmartLogLine smartLogLine))
+            {
+                smartLogLine?.Write(textWriter);
+            }
         }
     }
 }

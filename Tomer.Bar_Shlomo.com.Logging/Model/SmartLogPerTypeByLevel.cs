@@ -1,23 +1,15 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace Tomer.Bar_Shlomo.com.Logging.Model
 {
+    [SuppressMessage("ReSharper", "HeapView.ObjectAllocation.Evident")]
     public class SmartLogPerTypeByLevel<T> : ConcurrentDictionary<SmartLogLevel, SmartLogLines>
     {
-        private static readonly SmartLogLevel[] SmartLogLevelsWriteOrder =
-        {
-            SmartLogLevel.Critical,
-            SmartLogLevel.Error,
-            SmartLogLevel.Warn,
-            SmartLogLevel.Info,
-            SmartLogLevel.Debug,
-            SmartLogLevel.Trace
-        };
-
         public SmartLogPerTypeByLevel()
         {
-            foreach (SmartLogLevel smartLogLevel in SmartLogLevelsWriteOrder)
+            foreach (SmartLogLevel smartLogLevel in SmartLoggerFactory.SmartLogLevelsWriteOrder)
             {
                 string line = SmartLogLine.GetLine("New",
                     smartLogLevel.ToLine(),
@@ -51,10 +43,9 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
             return size;
         }
 
-        // ReSharper disable once SuggestBaseTypeForParameter
         public void Write(TextWriter textWriter)
         {
-            foreach (SmartLogLevel smartLogLevel in SmartLogLevelsWriteOrder)
+            foreach (SmartLogLevel smartLogLevel in SmartLoggerFactory.SmartLogLevelsWriteOrder)
             {
                 TryGetValue(smartLogLevel,
                     out SmartLogLines smartLogLines);
