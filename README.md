@@ -2,7 +2,7 @@
 This solution targeting .Net Framwork v4.7.1 is [Jet Brains Raider](https://www.jetbrains/rider/) and [Microsoft Visual Studio](https://visualstudio.microsoft.com/) compatible.
 
 ## [Tomer.Bar_Shlomo.com.Logging](https://github.com/VRDate/Tomer.Bar_Shlomo.com/blob/master/Tomer.Bar_Shlomo.com.Logging)
-A cunstom thread safe logging library per Type By decending level logging to temporary foldter with Type as file name.
+A custom C#.Net thread safe logging library per Type By descending level logging to temporary folder with Type as file name.
 
 Tested by NUnit [Tomer.Bar_Shlomo.com.Logging.Tests\SmartLoggerTests.cs](https://github.com/VRDate/Tomer.Bar_Shlomo.com/blob/master/Tomer.Bar_Shlomo.com.Logging.Tests/SmartLoggerTests.cs) using:
 - CurrentThreadTest
