@@ -38,9 +38,9 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         public bool Equals(SmartLogLine smartLogLine1,
             SmartLogLine smartLogLine2)
         {
-            var hashCode1 = GetHashCode(smartLogLine1);
-            var hashCode2 = GetHashCode(smartLogLine2);
-            var equality = hashCode1
+            int hashCode1 = GetHashCode(smartLogLine1);
+            int hashCode2 = GetHashCode(smartLogLine2);
+            bool equality = hashCode1
                 .Equals(hashCode2);
             return equality;
         }
@@ -49,7 +49,7 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         public int GetHashCode(SmartLogLine smartLogLine)
         {
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-            var hashCode = smartLogLine == null
+            int hashCode = smartLogLine == null
                 ? 0
                 : smartLogLine.GetHashCode();
             return hashCode;
@@ -60,7 +60,7 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
             string line)
         {
             // ReSharper disable once HeapView.ObjectAllocation.Evident
-            var smartLogLine = new SmartLogLine(type,
+            SmartLogLine smartLogLine = new SmartLogLine(type,
                 smartLogLevel,
                 line);
             return smartLogLine;
@@ -69,7 +69,7 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         // ReSharper disable once MemberCanBePrivate.Global
         public override int GetHashCode()
         {
-            var hashCode = HashKey +
+            int hashCode = HashKey +
                            At.GetHashCode() +
                            ThreadName.GetHashCode() +
                            Type.GetHashCode() +
@@ -80,13 +80,13 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
 
         public void Write(TextWriter textWriter)
         {
-            var line = ToString();
+            string line = ToString();
             textWriter.WriteLine(line);
         }
 
         public override string ToString()
         {
-            var line = string.Format("{1:O}{0}{2}{0}{3}{0}{4}{0}{5}",
+            string line = string.Format("{1:O}{0}{2}{0}{3}{0}{4}{0}{5}",
                 VlaueSeperator,
                 // ReSharper disable once HeapView.BoxingAllocation
                 At,

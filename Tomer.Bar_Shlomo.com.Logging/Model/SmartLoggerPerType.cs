@@ -2,20 +2,62 @@
 using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Threading;
 
 namespace Tomer.Bar_Shlomo.com.Logging.Model
 {
-    public class SmartLoggerPerType<T> : ConcurrentDictionary<Type, SmartLogPerTypeByLevel<T>>, IDisposable
+    public class SmartLoggerPerType<T> : ConcurrentDictionary<Type, SmartLogPerTypeByLevel<T>>, 
+        IDisposable
     {
-        private FileStream _fileStream;
+        private string Name { get; }
 
-        private TextWriter _textWriter;
+        public SmartLoggerPerType(string name)
+        {
+            Name = GetName(name);
+        }
+
+        private static string GetName(string name)
+        {
+            string newName = $"{typeof(T)}.{name}";
+            return newName;
+        }
+
+
+        private FileStream _fileStream;
 
         private FileStream FileStream => _fileStream
                                          ?? (_fileStream = CreateFileStream());
 
-        public TextWriter TextWriter => _textWriter
-                                        ?? (_textWriter = CreateLog(FileStream));
+        private FileStream CreateFileStream()
+        {
+            string tempPath = Path.GetTempPath();
+            string filepath = Path.Combine(tempPath, $"{Name}.log");
+            string line = SmartLogLine.GetLine("Logging",
+                "to",
+                filepath);
+            SmartLogLine smartLogLine = SmartLogLine.Create(typeof(T),
+                SmartLogLevel.Trace,
+                line);
+            Console.Out.WriteLine(smartLogLine.ToString());
+            Console.Out.Flush();
+            FileStream fileStream = new FileStream(filepath,
+                FileMode.Append,
+                FileAccess.Write);
+            return fileStream;
+        }
+
+        private TextWriter _textWriter;
+
+        private TextWriter Logger => _textWriter
+                                         ?? (_textWriter = CreateLogger(FileStream));
+
+        [SuppressMessage("ReSharper", "HeapView.ObjectAllocation.Evident")]
+        private StreamWriter CreateLogger(FileStream fileStream)
+        {
+            _fileStream = fileStream;
+            StreamWriter streamWriter = new StreamWriter(fileStream);
+            return streamWriter;
+        }
 
         public void Dispose()
         {
@@ -23,47 +65,22 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
             GC.SuppressFinalize(this);
         }
 
-        [SuppressMessage("ReSharper", "HeapView.ObjectAllocation.Evident")]
-        private StreamWriter CreateLog(FileStream fileStream)
-        {
-            _fileStream = fileStream;
-            var streamWriter = new StreamWriter(fileStream);
-            return streamWriter;
-        }
-
-        private FileStream CreateFileStream()
-        {
-            var tempPath = Path.GetTempPath();
-            var filepath = Path.Combine(tempPath, $"{typeof(T)}.log");
-            var line = SmartLogLine.GetLine("Logging",
-                "to",
-                filepath);
-            var smartLogLine = SmartLogLine.Create(typeof(T),
-                SmartLogLevel.Trace,
-                line);
-            Console.Out.WriteLine(smartLogLine.ToString());
-            Console.Out.Flush();
-            var fileStream = new FileStream(filepath,
-                FileMode.Append,
-                FileAccess.Write);
-            return fileStream;
-        }
 
         public void Write()
         {
-            foreach (var type in Keys)
+            foreach (Type type in Keys)
             {
                 TryGetValue(type,
-                    out var smartLogByLevel);
-                smartLogByLevel?.Write(TextWriter);
-                TextWriter.WriteLine();
-                TextWriter.Flush();
+                    out SmartLogPerTypeByLevel<T> smartLogByLevel);
+                smartLogByLevel?.Write(Logger);
+                Logger.WriteLine();
+                Logger.Flush();
             }
         }
 
         private void ReleaseUnmanagedResources()
         {
-            TextWriter.Flush();
+            Logger.Flush();
             FileStream.Close();
         }
 

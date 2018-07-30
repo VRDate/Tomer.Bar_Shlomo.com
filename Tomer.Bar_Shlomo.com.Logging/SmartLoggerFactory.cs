@@ -15,10 +15,10 @@ namespace Tomer.Bar_Shlomo.com.Logging
             SmartLogLevel smartLogLevel,
             string message)
         {
-            var line = SmartLogLine.GetLine(action,
+            string line = SmartLogLine.GetLine(action,
                 smartLogLevel.ToLine(),
                 message);
-            var smartLogPerTypeByLevel = smartLoggerPerType.Log(smartLogLevel,
+            SmartLogPerTypeByLevel<T> smartLogPerTypeByLevel = smartLoggerPerType.Log(smartLogLevel,
                 line);
             return smartLogPerTypeByLevel;
         }
@@ -27,7 +27,7 @@ namespace Tomer.Bar_Shlomo.com.Logging
             SmartLogLevel smartLogLevel,
             string line)
         {
-            var smartLogPerTypeByLevel = smartLoggerPerType.GetOrAdd(typeof(T),
+            SmartLogPerTypeByLevel<T> smartLogPerTypeByLevel = smartLoggerPerType.GetOrAdd(typeof(T),
                 new SmartLogPerTypeByLevel<T>());
             smartLogPerTypeByLevel.Log(smartLogLevel,
                 line);
@@ -45,26 +45,26 @@ namespace Tomer.Bar_Shlomo.com.Logging
 
         public static int Priority(this SmartLogLevel smartLogLevel)
         {
-            var index = Index(smartLogLevel);
-            var priority = (int) SmartLogLevelValues.GetValue(index);
+            int index = Index(smartLogLevel);
+            int priority = (int) SmartLogLevelValues.GetValue(index);
             return priority;
         }
 
         private static int Index(this SmartLogLevel smartLogLevel)
         {
             // ReSharper disable once HeapView.BoxingAllocation
-            var indexOf = Array.IndexOf(SmartLogLevelValues,
+            int indexOf = Array.IndexOf(SmartLogLevelValues,
                 smartLogLevel);
             return indexOf;
         }
 
         public static string ToLine(this SmartLogLevel smartLogLevel)
         {
-            var name = Enum.GetName(typeof(SmartLogLevel),
+            string name = Enum.GetName(typeof(SmartLogLevel),
                 // ReSharper disable once HeapView.BoxingAllocation
                 smartLogLevel);
-            var priority = smartLogLevel.Priority();
-            var line = $"{priority.ToString()}-{name}";
+            int priority = smartLogLevel.Priority();
+            string line = $"{priority.ToString()}-{name}";
             return line;
         }
     }

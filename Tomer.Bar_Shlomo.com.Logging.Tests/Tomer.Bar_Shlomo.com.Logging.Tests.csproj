@@ -51,12 +51,75 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="..\README.md">
       <Link>README.md</Link>
     </Content>
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.CurrentThreadTest[1].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[10].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[11].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[12].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[13].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[14].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[15].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[16].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[17].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[18].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[19].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[1].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[20].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[21].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[22].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[23].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[24].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[25].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[26].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[27].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[28].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[29].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[2].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[30].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[31].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[32].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[33].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[34].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[35].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[36].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[37].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[38].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[39].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[3].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[40].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[41].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[42].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[43].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[44].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[45].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[46].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[47].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[48].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[49].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[4].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[50].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[51].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[52].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[53].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[54].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[55].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[56].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[57].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[58].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[59].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[5].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[60].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[61].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[62].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[63].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[64].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[6].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[7].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[8].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsMultiLogsTest[9].log" />
+    <Content Include="Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.MultiThreadsSingleLogTest[1].log" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

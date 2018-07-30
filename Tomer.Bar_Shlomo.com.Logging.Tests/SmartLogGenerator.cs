@@ -8,52 +8,23 @@ namespace Tomer.Bar_Shlomo.com.Logging.Tests
     public class SmartLogGenerator : IDisposable
     {
         private const string Getting = "Getting";
-        private const string Creating = "Creating";
         private const string SmartLogGeneratorName = "Smart Log Generator";
         private const string Size = "Size";
 
-        public static readonly SmartLoggerPerType<SmartLogGenerator> SmartLoggerPerType =
-            new SmartLoggerPerType<SmartLogGenerator>();
-
-        private static readonly SmartLogPerTypeByLevel<SmartLogGenerator> ExpectedSmartLogPerTypeByLevelCritical =
-            SmartLoggerPerType.Log(Creating,
-                SmartLogLevel.Critical,
-                SmartLogGeneratorName);
-
-        private static readonly SmartLogPerTypeByLevel<SmartLogGenerator> ExpectedSmartLogPerTypeByLevelError =
-            SmartLoggerPerType.Log(Creating,
-                SmartLogLevel.Error,
-                SmartLogGeneratorName);
-
-        private static readonly SmartLogPerTypeByLevel<SmartLogGenerator> ExpectedSmartLogPerTypeByLevelWarn =
-            SmartLoggerPerType.Log(Creating,
-                SmartLogLevel.Warn,
-                SmartLogGeneratorName);
-
-        private static readonly SmartLogPerTypeByLevel<SmartLogGenerator> ExpectedSmartLogPerTypeByLevelInfo =
-            SmartLoggerPerType.Log(Creating,
-                SmartLogLevel.Info,
-                SmartLogGeneratorName);
-
-        private static readonly SmartLogPerTypeByLevel<SmartLogGenerator> ExpectedSmartLogPerTypeByLevelDebug =
-            SmartLoggerPerType.Log(Creating,
-                SmartLogLevel.Debug,
-                SmartLogGeneratorName);
-
-        private static readonly SmartLogPerTypeByLevel<SmartLogGenerator> ExpectedSmartLogPerTypeByLevelTrace =
-            SmartLoggerPerType.Log(Creating,
-                SmartLogLevel.Trace,
-                SmartLogGeneratorName);
-
         public SmartLogGenerator(string name,
-            ManualResetEvent manualResetEvent)
+            ManualResetEvent manualResetEvent,
+            SmartLoggerPerType<SmartLoggerTests> SmartLoggerPerType)
         {
             Name = name;
             ManualResetEvent = manualResetEvent;
+            this.SmartLoggerPerType = SmartLoggerPerType;
         }
 
-        public string Name { get; set; }
-        public ManualResetEvent ManualResetEvent { get; set; }
+        private SmartLoggerPerType<SmartLoggerTests> SmartLoggerPerType { get; }
+
+        public string Name { get; }
+
+        public ManualResetEvent ManualResetEvent { get; }
 
         public void Dispose()
         {
@@ -68,27 +39,21 @@ namespace Tomer.Bar_Shlomo.com.Logging.Tests
                     SmartLogGeneratorName,
                     ToString()));
             AssertGetSmartLog(SmartLogLevel.Trace,
-                ExpectedSmartLogPerTypeByLevelTrace,
                 SmartLogLevel.Debug);
 
             AssertGetSmartLog(SmartLogLevel.Debug,
-                ExpectedSmartLogPerTypeByLevelDebug,
                 SmartLogLevel.Debug);
 
             AssertGetSmartLog(SmartLogLevel.Warn,
-                ExpectedSmartLogPerTypeByLevelWarn,
                 SmartLogLevel.Debug);
 
             AssertGetSmartLog(SmartLogLevel.Info,
-                ExpectedSmartLogPerTypeByLevelInfo,
                 SmartLogLevel.Debug);
 
             AssertGetSmartLog(SmartLogLevel.Error,
-                ExpectedSmartLogPerTypeByLevelError,
                 SmartLogLevel.Debug);
 
             AssertGetSmartLog(SmartLogLevel.Critical,
-                ExpectedSmartLogPerTypeByLevelCritical,
                 SmartLogLevel.Debug);
             SmartLoggerPerType.Log(SmartLogLevel.Trace,
                 SmartLogLine.GetLine("Complited",
@@ -99,17 +64,17 @@ namespace Tomer.Bar_Shlomo.com.Logging.Tests
         }
 
 
-        private static void AssertGetSmartLog(SmartLogLevel smartLogLevel,
-            SmartLogPerTypeByLevel<SmartLogGenerator> expectedSmartLogPerTypeByLevel,
+        private void AssertGetSmartLog(SmartLogLevel smartLogLevel,
             SmartLogLevel logLevel)
         {
-            var smartLogPerTypeByLevel = AssertGetSmartLog(Getting,
+            SmartLoggerPerType.TryGetValue(typeof(SmartLoggerTests),
+                out SmartLogPerTypeByLevel<SmartLoggerTests> expectedSmartLogPerTypeByLevel);
+            SmartLogPerTypeByLevel<SmartLoggerTests> smartLogPerTypeByLevel = AssertGetSmartLog(Getting,
                 smartLogLevel,
                 expectedSmartLogPerTypeByLevel);
             Thread.Sleep(100);
-            var smartLogLines = LogSize(smartLogLevel,
-                smartLogPerTypeByLevel);
-            var line = SmartLogLine.GetLine(logLevel.ToLine(),
+            LogSize(smartLogLevel);
+            string line = SmartLogLine.GetLine(logLevel.ToLine(),
                 SmartLogGeneratorName,
                 smartLogLevel.ToLine());
             smartLogPerTypeByLevel.Log(logLevel,
@@ -117,47 +82,50 @@ namespace Tomer.Bar_Shlomo.com.Logging.Tests
             Thread.Sleep(100);
         }
 
-        private static SmartLogPerTypeByLevel<SmartLogGenerator> AssertGetSmartLog(string action,
+        private SmartLogPerTypeByLevel<SmartLoggerTests> AssertGetSmartLog(string action,
             SmartLogLevel smartLogLevel,
-            SmartLogPerTypeByLevel<SmartLogGenerator> expectedSmartLogPerTypeByLevel)
+            SmartLogPerTypeByLevel<SmartLoggerTests> expectedSmartLogPerTypeByLevel)
         {
-            var smartLog = SmartLoggerPerType.Log(action,
+            Assert.NotNull(expectedSmartLogPerTypeByLevel);
+            SmartLogPerTypeByLevel<SmartLoggerTests> smartLogPerTypeByLevel = SmartLoggerPerType.Log(action,
                 smartLogLevel,
                 SmartLogGeneratorName);
-            Assert.NotNull(expectedSmartLogPerTypeByLevel);
-            Assert.NotNull(smartLog);
+            Assert.NotNull(smartLogPerTypeByLevel);
             Assert.AreEqual(expectedSmartLogPerTypeByLevel,
-                smartLog);
-            LogSize(smartLogLevel,
-                smartLog);
-            return smartLog;
+                smartLogPerTypeByLevel);
+            LogSize(smartLogLevel);
+            return smartLogPerTypeByLevel;
         }
 
-        private static SmartLogLines LogSize(SmartLogLevel smartLogLevel,
-            SmartLogPerTypeByLevel<SmartLogGenerator> smartLogPerTypeByLevel)
-        {
-            smartLogPerTypeByLevel.TryGetValue(smartLogLevel,
-                out var smartLogLines);
-            Assert.NotNull(smartLogLines);
-            var line = SmartLogLine.GetLine(SmartLogGeneratorName,
-                Size,
-                smartLogPerTypeByLevel.Size().ToString());
-            smartLogPerTypeByLevel.Log(smartLogLevel,
-                line);
-            Thread.Sleep(100);
-            return smartLogLines;
-        }
 
         public override string ToString()
         {
             return $"{Name}";
         }
 
-        private static void Write()
+        private void Write()
         {
-            LogSize(SmartLogLevel.Debug,
-                ExpectedSmartLogPerTypeByLevelDebug);
+            LogSize(SmartLogLevel.Debug);
             SmartLoggerPerType.Write();
+        }
+
+        private void LogSize(SmartLogLevel smartLogLevel)
+        {
+            SmartLoggerPerType.TryGetValue(typeof(SmartLoggerTests),
+                out SmartLogPerTypeByLevel<SmartLoggerTests> smartLogPerTypeByLevel);
+            Assert.NotNull(smartLogPerTypeByLevel);
+            
+            smartLogPerTypeByLevel.TryGetValue(smartLogLevel,
+                out SmartLogLines smartLogLines);
+            Assert.NotNull(smartLogLines);
+            
+            string line = SmartLogLine.GetLine(SmartLogGeneratorName,
+                Size,
+                smartLogPerTypeByLevel.Size().ToString());
+            smartLogPerTypeByLevel.Log(smartLogLevel,
+                line);
+            Assert.IsNotEmpty(smartLogLines);
+            Thread.Sleep(100);
         }
     }
 }

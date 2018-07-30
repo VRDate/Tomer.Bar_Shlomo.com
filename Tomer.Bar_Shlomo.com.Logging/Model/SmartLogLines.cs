@@ -8,13 +8,13 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         public void Log<T>(SmartLogLevel smartLogLevel,
             string line)
         {
-            var smartLogLine = smartLogLevel.CreateSmartLogLine<T>(line);
+            SmartLogLine smartLogLine = smartLogLevel.CreateSmartLogLine<T>(line);
             Enqueue(smartLogLine);
         }
 
         public void Write(TextWriter textWriter)
         {
-            while (TryDequeue(out var smartLogLine)) smartLogLine?.Write(textWriter);
+            while (TryDequeue(out SmartLogLine smartLogLine)) smartLogLine?.Write(textWriter);
         }
     }
 }

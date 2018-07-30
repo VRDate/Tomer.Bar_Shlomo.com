@@ -17,9 +17,9 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
 
         public SmartLogPerTypeByLevel()
         {
-            foreach (var smartLogLevel in SmartLogLevelsWriteOrder)
+            foreach (SmartLogLevel smartLogLevel in SmartLogLevelsWriteOrder)
             {
-                var line = SmartLogLine.GetLine("New",
+                string line = SmartLogLine.GetLine("New",
                     smartLogLevel.ToLine(),
                     typeof(T).ToString());
                 Log(smartLogLevel,
@@ -31,7 +31,7 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         public void Log(SmartLogLevel smartLogLevel,
             string line)
         {
-            var smartLogLines = GetOrAdd(smartLogLevel,
+            SmartLogLines smartLogLines = GetOrAdd(smartLogLevel,
                 new SmartLogLines());
             smartLogLines.Log<T>(smartLogLevel,
                 line);
@@ -39,11 +39,11 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
 
         public long Size()
         {
-            var size = 0L;
-            foreach (var smartLogLevel in Keys)
+            long size = 0L;
+            foreach (SmartLogLevel smartLogLevel in Keys)
             {
                 TryGetValue(smartLogLevel,
-                    out var smartLogLines);
+                    out SmartLogLines smartLogLines);
                 size += smartLogLines?.Count
                         ?? 0;
             }
@@ -54,10 +54,10 @@ namespace Tomer.Bar_Shlomo.com.Logging.Model
         // ReSharper disable once SuggestBaseTypeForParameter
         public void Write(TextWriter textWriter)
         {
-            foreach (var smartLogLevel in SmartLogLevelsWriteOrder)
+            foreach (SmartLogLevel smartLogLevel in SmartLogLevelsWriteOrder)
             {
                 TryGetValue(smartLogLevel,
-                    out var smartLogLines);
+                    out SmartLogLines smartLogLines);
                 smartLogLines?.Write(textWriter);
             }
         }

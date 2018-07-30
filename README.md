@@ -8,16 +8,19 @@ Tested by NUnit [Tomer.Bar_Shlomo.com.Logging.Tests\SmartLoggerTests.cs](https:/
 - CurrentThreadTest
 using [Tomer.Bar_Shlomo.com.Logging.Tests\SmartLogGenerator.cs](https://github.com/VRDate/Tomer.Bar_Shlomo.com/blob/master/Tomer.Bar_Shlomo.com.Logging.Tests/SmartLogGenerator.cs)
 
-- MultiThreadTest
+- MultiThreadTestMultiLogs
 using 64 [Tomer.Bar_Shlomo.com.Logging.Tests\SmartLogGenerator.cs](https://github.com/VRDate/Tomer.Bar_Shlomo.com/blob/master/Tomer.Bar_Shlomo.com.Logging.Tests/SmartLogGenerator.cs) threads
 
-- Sample output [Tomer.Bar_Shlomo.com.Logging.Tests\Output\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log](https://raw.githubusercontent.com/VRDate/Tomer.Bar_Shlomo.com/master/Tomer.Bar_Shlomo.com.Logging.Tests/Output/Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log)
+- MultiThreadsSingleLogTest
+using 64 [Tomer.Bar_Shlomo.com.Logging.Tests\SmartLogGenerator.cs](https://github.com/VRDate/Tomer.Bar_Shlomo.com/blob/master/Tomer.Bar_Shlomo.com.Logging.Tests/SmartLogGenerator.cs) threads
+
+- Sample output from all unit tests [Tomer.Bar_Shlomo.com.Logging.Tests\Output\ ](https://github.com/VRDate/Tomer.Bar_Shlomo.com/blob/master/Tomer.Bar_Shlomo.com.Logging.Tests/Output/)
 
 - Microsoft Windows 10
-    - Logging to C:\Users\[UserName]\AppData\Local\Temp\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log
+    - Logging to C:\Users\[UserName]\AppData\Local\Temp\Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.TestName[id].log
     - Tested with [Microsoft Visual Studio](https://visualstudio.microsoft.com/)
    & [Jet Brains Resharper Extention](https://www.jetbrains/resharper/features/)
    as well as with [Jet Brains Raider](https://www.jetbrains/rider/).
 - Linux
-    - Logging to /tmp/Tomer.Bar_Shlomo.com.Logging.Tests.SmartLogGenerator.log
+    - Logging to /tmp/Tomer.Bar_Shlomo.com.Logging.Tests.SmartLoggerTests.TestName[id].log
     - Tested with [Jet Brains Raider](https://www.jetbrains/rider/)
